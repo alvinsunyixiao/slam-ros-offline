@@ -1,0 +1,44 @@
+# Camera Model
+Camera.name: "ZED Rev 1"
+Camera.setup: "stereo"
+Camera.model: "perspective"
+
+# ORB Parameters
+Feature.max_num_keypoints: 1000
+Feature.scale_factor: 1.2
+Feature.num_levels: 8
+Feature.ini_fast_threshold: 20
+Feature.min_fast_threshold: 7
+
+Camera.fx: 264.535
+Camera.fy: 264.48
+Camera.cx: 338.2
+Camera.cy: 183.14325
+
+Camera.k1: 0.0
+Camera.k2: 0.0
+Camera.p1: 0.0
+Camera.p2: 0.0
+Camera.k3: 0.0
+
+Camera.fps: 30.0
+Camera.cols: 672
+Camera.rows: 376
+Camera.focal_x_baseline: 31.6751564
+
+Camera.color_order: "BGR"
+
+# PangolinViewer Parameters
+PangolinViewer.keyframe_size: 0.05
+PangolinViewer.keyframe_line_width: 1
+PangolinViewer.graph_line_width: 1
+PangolinViewer.point_size: 2
+PangolinViewer.camera_size: 0.08
+PangolinViewer.camera_line_width: 3
+PangolinViewer.viewpoint_x: 0
+PangolinViewer.viewpoint_y: -0.9
+PangolinViewer.viewpoint_z: -1.9
+PangolinViewer.viewpoint_f: 400
+
+# Initializer Parameters
+Initializer.num_min_triangulated_pts: 100

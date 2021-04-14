@@ -1,0 +1,5 @@
+<launch>
+  <node pkg="slam_offline" type="orbslam_node" name="slam" output="screen">
+    <param name="inertial" type="bool" value="false" />
+  </node>
+</launch>

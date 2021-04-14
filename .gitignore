@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# project
+compile_commands.json

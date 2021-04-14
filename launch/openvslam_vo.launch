@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="slam_offline" type="openvslam_node" name="slam" output="screen" />
+</launch>
