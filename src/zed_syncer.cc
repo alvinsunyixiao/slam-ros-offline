@@ -1,5 +1,7 @@
 #include "zed_syncer.h"
 
+static int img_cnt = 0;
+
 ZedSyncer::ZedSyncer()
     : n_(),
       sub_imu_(n_.subscribe("/zed2/zed_node/imu/data", 100, &ZedSyncer::HandleIMU, this)),
@@ -18,16 +20,16 @@ ZedSyncer::~ZedSyncer() {
 void ZedSyncer::RegisterCallback(const CallbackType& callback) { callback_ = callback; }
 
 void ZedSyncer::HandleIMU(const sensor_msgs::ImuConstPtr& msg) {
-  if (imu_q_.empty() || msg->header.stamp.toSec() - imu_q_.back()->header.stamp.toSec() >= 4e-3) {
-    imu_q_.push_back(msg);
-    TryInvokeSync();
-  }
+  imu_q_.push_back(msg);
+  TryInvokeSync();
 }
 
 void ZedSyncer::HandleStereo(const sensor_msgs::ImageConstPtr& left_msg,
                              const sensor_msgs::ImageConstPtr& right_msg) {
-  stereo_q_.push(std::make_pair(left_msg, right_msg));
-  TryInvokeSync();
+  if ((img_cnt++) % 3 == 0) {
+    stereo_q_.push(std::make_pair(left_msg, right_msg));
+    TryInvokeSync();
+  }
 }
 
 void ZedSyncer::TryInvokeSync() {

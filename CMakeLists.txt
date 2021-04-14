@@ -13,7 +13,7 @@ find_package(catkin REQUIRED
     COMPONENTS roscpp sensor_msgs geometry_msgs message_filters cv_bridge)
 
 # System dependencies are found with CMake's conventions
-find_package(openvslam REQUIRED)
+#find_package(openvslam REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(yaml-cpp REQUIRED)
@@ -133,9 +133,9 @@ target_link_libraries(zed_syncer PUBLIC ${catkin_LIBRARIES})
 # Declare a C++ executable
 # With catkin_make all packages are built within a single CMake context
 # The recommended prefix ensures that target names across packages don't collide
-add_executable(openvslam_node src/openvslam.cc)
-target_link_libraries(openvslam_node
-    PRIVATE ${catkin_LIBRARIES} zed_syncer openvslam::openvslam openvslam::pangolin_viewer ${OpenCV_LIBS})
+#add_executable(openvslam_node src/openvslam.cc)
+#target_link_libraries(openvslam_node
+#    PRIVATE ${catkin_LIBRARIES} zed_syncer openvslam::openvslam openvslam::pangolin_viewer ${OpenCV_LIBS})
 
 add_executable(orbslam_node src/orb_slam3.cc)
 target_link_libraries(orbslam_node

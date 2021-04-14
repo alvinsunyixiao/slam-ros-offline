@@ -43,16 +43,13 @@ int main(int argc, char* argv[]) {
 
     std::unique_lock<std::mutex> lock(mtx_state);
     if (!imu_meas.empty()) {
-      ROS_WARN("Synced packed dropped");
-      return;
+      ROS_WARN("Synced images dropped");
     }
 
     left_img = cv_bridge::toCvShare(left_img_msg, sensor_msgs::image_encodings::BGR8);
     right_img = cv_bridge::toCvShare(right_img_msg, sensor_msgs::image_encodings::BGR8);
 
-    cout << "----------------------" << endl;
     for (const auto& imu_msg: imu_msgs) {
-      cout << imu_msg->header.stamp.toNSec() << endl;
       imu_meas.push_back(ORB_SLAM3::IMU::Point(imu_msg->linear_acceleration.x,
                                                imu_msg->linear_acceleration.y,
                                                imu_msg->linear_acceleration.z,
@@ -61,7 +58,6 @@ int main(int argc, char* argv[]) {
                                                imu_msg->angular_velocity.z,
                                                imu_msg->header.stamp.toSec()));
     }
-    cout << "----------------------" << endl;
 
     lock.unlock();
     cv_state.notify_one();
